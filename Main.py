@@ -1,6 +1,8 @@
 import os, sys, pygame as pg
 pg.init()
 
+enemies = [[[0,0],0, 0, ""]] #[[[x_pos, y_pos], width, length, image], more...]
+
 #Basic Variables
 max_width = 720
 max_height = 640
@@ -24,6 +26,12 @@ x_pos = 0
 y_pos = 0
 On = False
 
+def checkBoundaries(x_pos, y_pos):
+    if x_pos < 0:   x_pos = 0
+    if y_pos < 0:   y_pos = 0
+    if x_pos > max_width - 120:     x_pos = max_width - 120
+    if y_pos > max_height - 120:    y_pos = max_height - 120
+
 while not On:
     #basic loop
     clock.tick(60)    
@@ -42,6 +50,7 @@ while not On:
     if keys[pg.K_RIGHT]:    x_pos += velocity
     
     #Enforcing a boundary for the screen
+    
     if x_pos < 0:   x_pos = 0
     if y_pos < 0:   y_pos = 0
     if x_pos > max_width - 120:     x_pos = max_width - 120
